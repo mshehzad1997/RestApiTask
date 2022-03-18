@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace RestApiTask.Models
@@ -19,7 +20,7 @@ namespace RestApiTask.Models
         public int ManageRoleId { get; set; }
 
         [ForeignKey("ManageRoleId")]
-
+        [JsonIgnore]
         public virtual ManageRoles ManageRoles { get; set; }
         public gender Gender { get; set; }
         public bool Status { get; set; }
