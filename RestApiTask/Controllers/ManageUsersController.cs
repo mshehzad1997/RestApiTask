@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RestApiTask.Models;
 using RestApiTask.Models.Data;
 using System;
@@ -57,6 +58,30 @@ namespace RestApiTask.Controllers
                 
             }
             return Ok();
+        }
+        [HttpPost]
+        [Route("DeleteUser")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _db.users.FirstOrDefaultAsync(x => x.Id == id);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            var userModel = new Users();
+            if(user != null)
+            {
+                user.Email = userModel.Email;
+                user.FullName = userModel.FullName;
+                user.Gender = userModel.Gender;
+                user.ManageRoleId = userModel.ManageRoleId;
+                user.Password = userModel.Password;
+                user.Status = false;
+                _db.users.Update(user);
+                await _db.SaveChangesAsync();
+            }
+            return Ok();
+
         }
     }
 }
