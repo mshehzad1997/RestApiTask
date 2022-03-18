@@ -21,9 +21,17 @@ namespace RestApiTask.Controllers
         }
         [HttpGet]
         [Route("GetUsers")]
-        public IActionResult GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            return Ok();
+            var user = await (_db.users.Where(x => x.Status == true).Select(p => new
+            {
+                p.FullName,
+                p.Email,
+                p.Gender,
+                p.ManageRoleId,
+                p.Status
+            })).ToListAsync();
+            return Ok(user);
         }
         [HttpPost]
         [Route("CreateUsers")]
@@ -68,17 +76,25 @@ namespace RestApiTask.Controllers
             {
                 return NotFound();
             }
-            var userModel = new Users();
+            
             if(user != null)
             {
-                user.Email = userModel.Email;
-                user.FullName = userModel.FullName;
-                user.Gender = userModel.Gender;
-                user.ManageRoleId = userModel.ManageRoleId;
-                user.Password = userModel.Password;
-                user.Status = false;
-                _db.users.Update(user);
-                await _db.SaveChangesAsync();
+                if(user.Status == true)
+                {
+                    user.Email = user.Email;
+                    user.FullName = user.FullName;
+                    user.Gender = user.Gender;
+                    user.ManageRoleId = user.ManageRoleId;
+                    user.Password = user.Password;
+                    user.Status = false;
+                    _db.users.Update(user);
+                    await _db.SaveChangesAsync();
+                }
+                else
+                {
+
+                }
+              
             }
             return Ok();
 
