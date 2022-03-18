@@ -29,5 +29,34 @@ namespace RestApiTask.Controllers
             }
             return Ok();
         }
+        [HttpPost]
+        [Route("UpdateRole")]
+        public async Task<IActionResult> UpdateRole(ManageRoles model)
+        {
+            if (ModelState.IsValid)
+            {
+                var role = await _db.manageRoles.FindAsync(model.Id);
+                if(role == null)
+                {
+                    return NotFound();
+                }
+                if(model.RoleName == null)
+                {
+                    role.Description = model.Description;
+                    role.DemoRequests = model.DemoRequests;
+                    role.ManageTenants = model.ManageTenants;
+                    role.Payments = model.Payments;
+                    _db.manageRoles.Update(role);
+                    await _db.SaveChangesAsync();
+                }
+                else
+                {
+                    return BadRequest("Cannot Update Name");
+                }
+          
+               
+            }
+            return Ok();
+        }
     }
 }
