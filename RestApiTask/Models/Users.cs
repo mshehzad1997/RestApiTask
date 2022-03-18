@@ -12,7 +12,7 @@ namespace RestApiTask.Models
         public int Id { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }
-      
+       [UniqueEmail]
         public string Email { get; set; }
         [Display(Name = "ManageRoleId")]
         public int ManageRoleId { get; set; }
