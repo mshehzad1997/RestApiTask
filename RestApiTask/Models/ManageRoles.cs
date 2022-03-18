@@ -11,6 +11,7 @@ namespace RestApiTask.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [UniqueRoleName]
         public string RoleName { get; set; }
         [Required]
         public string Description { get; set; }
