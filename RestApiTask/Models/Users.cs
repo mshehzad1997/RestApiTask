@@ -24,7 +24,7 @@ namespace RestApiTask.Models
         public virtual ManageRoles ManageRoles { get; set; }
         public gender Gender { get; set; }
         public bool Status { get; set; }
-       [RegularExpression(@"^[a-zA-z0-9]{8,}")]
+        [RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$", ErrorMessage = "Passwords must be at least 8 characters  ")]
         public string Password { get; set; }
         public enum gender
         {
