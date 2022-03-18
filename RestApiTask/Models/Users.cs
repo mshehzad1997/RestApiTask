@@ -11,6 +11,7 @@ namespace RestApiTask.Models
     {
         public int Id { get; set; }
         public string FullName { get; set; }
+        [UniqueUserName]
         public string UserName { get; set; }
        [UniqueEmail]
         public string Email { get; set; }
@@ -19,7 +20,7 @@ namespace RestApiTask.Models
 
         [ForeignKey("ManageRoleId")]
 
-        public virtual ManageRoles PricingPlan { get; set; }
+        public virtual ManageRoles ManageRoles { get; set; }
         public gender Gender { get; set; }
         public bool Status { get; set; }
         public string Password { get; set; }
