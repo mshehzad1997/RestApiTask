@@ -24,7 +24,7 @@ namespace RestApiTask.Models
         public virtual ManageRoles ManageRoles { get; set; }
         public gender Gender { get; set; }
         public bool Status { get; set; }
-       
+       [RegularExpression(@"^[a-zA-z0-9]{8,}")]
         public string Password { get; set; }
         public enum gender
         {
