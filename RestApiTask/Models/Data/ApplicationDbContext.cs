@@ -10,7 +10,8 @@ namespace RestApiTask.Models.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options)
         {
-
+          
         }
+        //public DbSet<Users> users { get; set; }
     }
 }
