@@ -35,5 +35,28 @@ namespace RestApiTask.Controllers
             }
             return Ok();
         }
+        [HttpPost]
+        [Route("UpdateUsers")]
+        public async Task<IActionResult> UpdateUser(Users model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _db.users.FindAsync(model.Id);
+                if(user == null)
+                {
+                    return NotFound();
+                }
+                user.Email = model.Email;
+                user.FullName = model.FullName;
+                user.Gender = model.Gender;
+                user.ManageRoleId = model.ManageRoleId;
+                user.Status = model.Status;
+                user.Password = model.Password;
+                _db.users.Add(model);
+               await _db.SaveChangesAsync();
+                
+            }
+            return Ok();
+        }
     }
 }
