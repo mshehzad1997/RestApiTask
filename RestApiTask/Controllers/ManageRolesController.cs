@@ -26,6 +26,18 @@ namespace RestApiTask.Controllers
             var role = await _db.manageRoles.ToListAsync();
             return Ok(role);
         }
+        [HttpGet]
+        [Route("RoleDetails")]
+        public async Task<IActionResult> RoleDetails(int id)
+        {
+            
+            var detail =await _db.manageRoles.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if(detail == null)
+            {
+                return NotFound();
+            }
+            return Ok(detail);
+        }
         [HttpPost]
         [Route("CreateRole")]
         public async Task<IActionResult> CreateRole(ManageRoles model)
