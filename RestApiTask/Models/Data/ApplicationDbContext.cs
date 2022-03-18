@@ -13,5 +13,6 @@ namespace RestApiTask.Models.Data
            
         }
         public DbSet<ManageRoles> manageRoles { get; set; }
+        public DbSet<Users> users { get; set; }
     }
 }
