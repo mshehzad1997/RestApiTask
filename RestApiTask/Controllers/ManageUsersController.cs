@@ -39,6 +39,10 @@ namespace RestApiTask.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(model.Password.Contains(model.UserName) || model.Password.Contains(model.Email))
+                {
+                    return BadRequest("Only Unique Password Allowed");
+                }
                 _db.users.Add(model);
               await _db.SaveChangesAsync();
             }
