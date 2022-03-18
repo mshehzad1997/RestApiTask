@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RestApiTask.Models;
 using RestApiTask.Models.Data;
 using System;
@@ -17,6 +18,13 @@ namespace RestApiTask.Controllers
         public ManageRolesController(ApplicationDbContext db)
         {
             _db = db;
+        }
+        [HttpGet]
+        [Route("GetAllRoles")]
+        public async Task<IActionResult> GetAllRoles()
+        {
+            var role = await _db.manageRoles.ToListAsync();
+            return Ok(role);
         }
         [HttpPost]
         [Route("CreateRole")]
@@ -58,5 +66,6 @@ namespace RestApiTask.Controllers
             }
             return Ok();
         }
+        
     }
 }
