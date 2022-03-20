@@ -23,9 +23,9 @@ namespace RestApiTask.Controllers
         [Route("GetAllRoles")]
         public async Task<IActionResult> GetAllRoles()
         {
-            var payment = _db.payments.ToList();
-            var tenant = _db.manageTenants.ToList();
-            var roles = _db.manageRoles.ToList();
+            var payment =await _db.Payments.ToListAsync();
+            var tenant =await _db.manageTenants.ToListAsync();
+            var roles =await _db.manageRoles.ToListAsync();
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
                         join t in tenant on mr.Id equals t.Id
