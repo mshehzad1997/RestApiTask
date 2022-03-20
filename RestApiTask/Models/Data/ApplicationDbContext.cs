@@ -17,6 +17,9 @@ namespace RestApiTask.Models.Data
         public DbSet<Payments> Payments { get; set; }
         public DbSet<ManageTenant> manageTenants { get; set; }
         public DbSet<DemoRequest> demoRequests { get; set; }
+        public DbSet<ManageUsers> manageUsers { get; set; }
+        public DbSet<RolesManage> rolesManages { get; set; }
+        public DbSet<UserManagements> userManagements { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Payments>()
@@ -28,6 +31,15 @@ namespace RestApiTask.Models.Data
             modelBuilder.Entity<DemoRequest>()
           .HasOne(p => p.ManageRoles)
           .WithMany(b => b.DemoRequests);
+            modelBuilder.Entity<ManageUsers>()
+         .HasOne(p => p.UserManagements)
+         .WithMany(b => b.manageUsers);
+            modelBuilder.Entity<RolesManage>()
+         .HasOne(p => p.UserManagements)
+         .WithMany(b => b.rolesManages);
+            modelBuilder.Entity<UserManagements>()
+         .HasOne(p => p.ManageRoles)
+         .WithMany(b => b.UserManagements);
         }
     }
 }
