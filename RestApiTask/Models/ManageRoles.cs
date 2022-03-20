@@ -15,15 +15,10 @@ namespace RestApiTask.Models
         public string RoleName { get; set; }
         [Required]
         public string Description { get; set; }
-        public Payment Payments { get; set; }
+        public List<Payments> Payments { get; set; }
         public ManageTenant ManageTenants { get; set; }
         public DemoRequest DemoRequests { get; set; }
-        public enum Payment
-        {
-            ViewPayment,
-            ChangeStatus
-
-        }
+        
         public enum ManageTenant
         {
             RegisterTenant,
@@ -37,5 +32,10 @@ namespace RestApiTask.Models
             ViewRequest,
             ApproveRequest
         }
+    }
+    public class Payments
+    {
+        public bool ViewPayment { get; set; }
+        public bool ChangeStatus { get; set; }
     }
 }
