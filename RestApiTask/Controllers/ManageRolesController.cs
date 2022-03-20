@@ -23,7 +23,7 @@ namespace RestApiTask.Controllers
         [Route("GetAllRoles")]
         public async Task<IActionResult> GetAllRoles()
         {
-            var payment = _db.payments.ToList();
+            var payment = _db.Payments.ToList();
             var tenant = _db.manageTenants.ToList();
             var roles = _db.manageRoles.ToList();
             var role = (from mr in roles
