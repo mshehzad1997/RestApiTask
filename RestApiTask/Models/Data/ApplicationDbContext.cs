@@ -19,7 +19,15 @@ namespace RestApiTask.Models.Data
         public DbSet<DemoRequest> demoRequests { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+            modelBuilder.Entity<Payments>()
+           .HasOne(p => p.ManageRoles)
+           .WithMany(b => b.Payments);
+            modelBuilder.Entity<ManageTenant>()
+          .HasOne(p => p.ManageRoles)
+          .WithMany(b => b.ManageTenants);
+            modelBuilder.Entity<DemoRequest>()
+          .HasOne(p => p.ManageRoles)
+          .WithMany(b => b.DemoRequests);
         }
     }
 }
