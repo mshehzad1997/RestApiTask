@@ -40,6 +40,37 @@ namespace RestApiTask.Models.Data
             modelBuilder.Entity<UserManagements>()
          .HasOne(p => p.ManageRoles)
          .WithMany(b => b.UserManagements);
+
+      //      modelBuilder.Entity<Payments>()
+      //                .HasOne(p => p.ManageRoles)
+      //                .WithMany(b => b.Payments)
+      //              .OnDelete(DeleteBehavior.Cascade);
+
+      //        modelBuilder.Entity<ManageTenant>()
+      //        .HasOne(p => p.ManageRoles)
+      //       .WithMany(b => b.ManageTenants)
+      //       .OnDelete(DeleteBehavior.Cascade);
+
+           
+      //      modelBuilder.Entity<DemoRequest>()
+      //    .HasOne(p => p.ManageRoles)
+      //    .WithMany(b => b.DemoRequests)
+      //       .OnDelete(DeleteBehavior.Cascade);
+
+      //          modelBuilder.Entity<ManageUsers>()
+      //    .HasOne(p => p.UserManagements)
+      //    .WithMany(b => b.manageUsers)
+      //      .OnDelete(DeleteBehavior.Cascade);
+
+      //      modelBuilder.Entity<RolesManage>()
+      // .HasOne(p => p.UserManagements)
+      // .WithMany(b => b.rolesManages)
+      // .OnDelete(DeleteBehavior.Cascade);
+
+      //      modelBuilder.Entity<UserManagements>()
+      //.HasOne(p => p.ManageRoles)
+      //.WithMany(b => b.UserManagements)
+      //.OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
