@@ -20,6 +20,13 @@ namespace RestApiTask.Controllers
             _db = db;
         }
         [HttpGet]
+        [Route("UserDetails")]
+        public async Task<IActionResult> UserDetails( int id)
+        {
+            var userDetails =await _db.users.Where(x => x.Id == id).SingleOrDefaultAsync();
+            return Ok(userDetails);
+        }
+        [HttpGet]
         [Route("GetUsers")]
         public async Task<IActionResult> GetUsers()
         {
@@ -96,7 +103,7 @@ namespace RestApiTask.Controllers
                 }
                 else
                 {
-
+                    return BadRequest("Already Deleted");
                 }
               
             }
