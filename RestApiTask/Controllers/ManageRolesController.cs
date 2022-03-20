@@ -56,7 +56,7 @@ namespace RestApiTask.Controllers
         }
         [HttpPost]
         [Route("CreateRole")]
-        public async Task<IActionResult> CreateRole([FromForm] ManageRoles model)
+        public async Task<IActionResult> CreateRole( ManageRoles model)
         {
             if (ModelState.IsValid)
             {
