@@ -23,7 +23,11 @@ namespace RestApiTask.Controllers
         [Route("UserDetails")]
         public async Task<IActionResult> UserDetails( int id)
         {
-            var userDetails =await _db.users.Where(x => x.Id == id).SingleOrDefaultAsync();
+            var userDetails =await _db.users.Where(x => x.Id == id ).Where(y => y.Status == true).SingleOrDefaultAsync();
+            if(userDetails == null)
+            {
+                return NotFound();
+            }
             return Ok(userDetails);
         }
         [HttpGet]
