@@ -32,13 +32,15 @@ namespace RestApiTask.Controllers
             var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
+
                         join t in tenant on mr.Id equals t.Id
                         join d in demoRequest on mr.Id  equals d.Id
                         join m in management on mr.Id equals m.Id
                         join u in manageUser on m.Id equals u.Id
                         join re in rolemanage on m.Id equals re.Id
-                        select new
+                        select new 
                         {
+                           
                             mr.RoleName,
                             mr.Description,
                             x.ChangeStatus,
@@ -109,6 +111,27 @@ namespace RestApiTask.Controllers
           
                
             }
+            return Ok();
+        }
+       [HttpPost]
+       [Route("DeleteRole")]
+       public async Task<IActionResult> DeleteRole(int id)
+        {
+            var role = _db.manageRoles.SingleOrDefault(x => x.Id == id);
+            if(role == null)
+            {
+                NotFound();
+            }
+            try
+            {
+                _db.manageRoles.Remove(role);
+                await _db.SaveChangesAsync();
+            }
+            catch
+            {
+                return BadRequest("Cannot delete Role is already in use");
+            }
+           
             return Ok();
         }
         
