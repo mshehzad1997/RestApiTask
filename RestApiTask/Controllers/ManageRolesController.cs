@@ -26,9 +26,17 @@ namespace RestApiTask.Controllers
             var payment =await _db.Payments.ToListAsync();
             var tenant =await _db.manageTenants.ToListAsync();
             var roles =await _db.manageRoles.ToListAsync();
+            var manageUser =await _db.manageUsers.ToListAsync();
+            var rolemanage = await _db.rolesManages.ToListAsync();
+            var management = await _db.userManagements.ToListAsync();
+            var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
                         join t in tenant on mr.Id equals t.Id
+                        join d in demoRequest on mr.Id  equals d.Id
+                        join m in management on mr.Id equals m.Id
+                        join u in manageUser on m.Id equals u.Id
+                        join re in rolemanage on m.Id equals re.Id
                         select new
                         {
                             mr.RoleName,
@@ -38,7 +46,15 @@ namespace RestApiTask.Controllers
                             t.RegisterTenant,
                             t.RessetPassword,
                             t.UpdateTenant,
-                            t.ViewTenant
+                            t.ViewTenant,
+                            d.ViewRequest,
+                            d.ApproveRequest,
+                            u.Inactive,
+                            u.CreateUser,
+                            u.Reset,
+                            re.UpdateRole,
+                            re.ViewRole
+
                         }).ToList();
             return Ok(role);
         }
