@@ -14,5 +14,12 @@ namespace RestApiTask.Models.Data
         }
         public DbSet<ManageRoles> manageRoles { get; set; }
         public DbSet<Users> users { get; set; }
+        public DbSet<Payments> Payments { get; set; }
+        public DbSet<ManageTenant> manageTenants { get; set; }
+        public DbSet<DemoRequest> demoRequests { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+           
+        }
     }
 }
