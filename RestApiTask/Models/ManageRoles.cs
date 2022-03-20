@@ -16,26 +16,30 @@ namespace RestApiTask.Models
         [Required]
         public string Description { get; set; }
         public List<Payments> Payments { get; set; }
-        public ManageTenant ManageTenants { get; set; }
-        public DemoRequest DemoRequests { get; set; }
+        public List<ManageTenant> ManageTenants { get; set; }
+        public List<DemoRequest> DemoRequests { get; set; }
         
-        public enum ManageTenant
-        {
-            RegisterTenant,
-            ViewTenant,
-            UpdateTenant,
-            UpgradePlan,
-            RessetPassword
-        }
-        public enum DemoRequest
-        {
-            ViewRequest,
-            ApproveRequest
-        }
+       
+      
     }
     public class Payments
     {
         public bool ViewPayment { get; set; }
         public bool ChangeStatus { get; set; }
+    }
+    public class ManageTenant
+    {
+        public bool RegisterTenant { get; set; }
+        public bool ViewTenant { get; set; }
+        public bool UpdateTenant { get; set; }
+        public bool UpgradePlan { get; set; }
+        public bool RessetPassword { get; set; }
+    }
+    public class DemoRequest
+    {
+        public bool ViewRequest { get; set; }
+        public bool ApproveRequest { get; set; }
+        
+
     }
 }
