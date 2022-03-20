@@ -118,13 +118,16 @@ namespace RestApiTask.Controllers
        public async Task<IActionResult> DeleteRole(int id)
         {
             var role = _db.manageRoles.SingleOrDefault(x => x.Id == id);
-            if(role == null)
+            //var role = _db.manageRoles.OrderBy(e => e.RoleName).Include(x => x.Payments).Include(y => y.ManageTenants)
+            //  .Include(z => z.DemoRequests).Include(d => d.UserManagements)
+            //  .SingleOrDefault(x => x.Id == id);
+            if (role == null)
             {
                 NotFound();
             }
             try
             {
-                _db.manageRoles.Remove(role);
+                _db.manageRoles.Remove( role);
                 await _db.SaveChangesAsync();
             }
             catch
