@@ -98,6 +98,7 @@ namespace RestApiTask.Controllers
                     role.DemoRequests = model.DemoRequests;
                     role.ManageTenants = model.ManageTenants;
                     role.Payments = model.Payments;
+                    role.UserManagements = model.UserManagements;
                     _db.manageRoles.Update(role);
                     await _db.SaveChangesAsync();
                 }
