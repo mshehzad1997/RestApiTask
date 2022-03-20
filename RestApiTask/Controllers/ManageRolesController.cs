@@ -29,7 +29,7 @@ namespace RestApiTask.Controllers
             var manageUser = await _db.manageUsers.ToListAsync();
             var rolemanage = await _db.rolesManages.ToListAsync();
             var management = await _db.userManagements.ToListAsync();
-            var demoRequest = await _db.demoRequests.ToListAsync()
+            var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
                         join t in tenant on mr.Id equals t.Id
