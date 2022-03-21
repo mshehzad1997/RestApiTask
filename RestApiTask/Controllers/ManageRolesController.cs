@@ -65,7 +65,7 @@ namespace RestApiTask.Controllers
         [Route("RoleDetails")]
         public async Task<IActionResult> RoleDetails(int id)
         {
-
+            var payment = await _db.Payments.ToListAsync();
             var payment = await _db.Payments.ToListAsync();
             var tenant = await _db.manageTenants.ToListAsync();
             var roles = await _db.manageRoles.ToListAsync();
@@ -76,32 +76,33 @@ namespace RestApiTask.Controllers
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
 
-                        join t in tenant on mr.Id equals t.Id
-                        join d in demoRequest on mr.Id equals d.Id
-                        join m in management on mr.Id equals m.Id
-                        join u in manageUser on m.Id equals u.Id
-                        join re in rolemanage on m.Id equals re.Id
-                        where mr.Id == id
-                        select new
-                        {
+            var role = await _db.manageRoles.Select(x => new ManageRoles
+            {
+                RoleName = x.RoleName,
+                Description = x.Description,
+                DemoRequests = (List<DemoRequest>)x.DemoRequests.Select(y => new DemoRequest
+                {
+                    Id = x.Id,
+                    ApproveRequest = y.ApproveRequest,
+                    ViewRequest = y.ViewRequest
+                }).ToList(),
+                ManageTenants = (List<ManageTenant>)x.ManageTenants.Select(z => new ManageTenant
+                {
+                    Id = x.Id,
+                    RegisterTenant = z.RegisterTenant,
+                    RessetPassword = z.RessetPassword,
+                    UpdateTenant = z.UpdateTenant,
+                    ViewTenant = z.ViewTenant
+                }).ToList(),
+                Payments = (List<Payments>)x.Payments.Select(r => new Payments
+                {
+                    Id = x.Id,
+                    ChangeStatus = r.ChangeStatus,
+                    ViewPayment = r.ViewPayment,
+                    ManageRoles = r.ManageRoles
+                }).ToList(),
 
-                            mr.RoleName,
-                            mr.Description,
-                            x.ChangeStatus,
-                            x.ViewPayment,
-                            t.RegisterTenant,
-                            t.RessetPassword,
-                            t.UpdateTenant,
-                            t.ViewTenant,
-                            d.ViewRequest,
-                            d.ApproveRequest,
-                            u.Inactive,
-                            u.CreateUser,
-                            u.Reset,
-                            re.UpdateRole,
-                            re.ViewRole
-
-                        }).ToList();
+            }).ToListAsync();
             if (role == null)
             {
                 return NotFound();
@@ -130,8 +131,8 @@ namespace RestApiTask.Controllers
                 {
                     return NotFound();
                 }
-                if(model.RoleName == null)
-                {
+               
+              
                     role.Description = model.Description;
                     role.DemoRequests = model.DemoRequests;
                     role.ManageTenants = model.ManageTenants;
@@ -139,11 +140,7 @@ namespace RestApiTask.Controllers
                     role.UserManagements = model.UserManagements;
                     _db.manageRoles.Update(role);
                     await _db.SaveChangesAsync();
-                }
-                else
-                {
-                    return BadRequest("Cannot Update Name");
-                }
+                
           
                
             }
@@ -154,9 +151,7 @@ namespace RestApiTask.Controllers
        public async Task<IActionResult> DeleteRole(int id)
         {
             var role = _db.manageRoles.SingleOrDefault(x => x.Id == id);
-            //var role = _db.manageRoles.OrderBy(e => e.RoleName).Include(x => x.Payments).Include(y => y.ManageTenants)
-            //  .Include(z => z.DemoRequests).Include(d => d.UserManagements)
-            //  .SingleOrDefault(x => x.Id == id);
+            
             if (role == null)
             {
                 NotFound();
