@@ -57,55 +57,35 @@ namespace RestApiTask.Controllers
                             re.UpdateRole,
                             re.ViewRole
 
-                        }).ToList();
-
-            return Ok(role);
-        }
-        [HttpGet]
-        [Route("RoleDetails")]
-        public async Task<IActionResult> RoleDetails(int id)
-        {
-            var payment = await _db.Payments.ToListAsync();
-            var payment = await _db.Payments.ToListAsync();
-            var tenant = await _db.manageTenants.ToListAsync();
-            var roles = await _db.manageRoles.ToListAsync();
-            var payment = await _db.Payments.ToListAsync();
-            var tenant = await _db.manageTenants.ToListAsync();
-            var roles = await _db.manageRoles.ToListAsync();
-            var manageUser = await _db.manageUsers.ToListAsync();
-            var rolemanage = await _db.rolesManages.ToListAsync();
-            var management = await _db.userManagements.ToListAsync();
+    
             var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
 
-            var role = await _db.manageRoles.Select(x => new ManageRoles
-            {
-                RoleName = x.RoleName,
-                Description = x.Description,
-                DemoRequests = (List<DemoRequest>)x.DemoRequests.Select(y => new DemoRequest
-                {
-                    Id = x.Id,
-                    ApproveRequest = y.ApproveRequest,
-                    ViewRequest = y.ViewRequest
-                }).ToList(),
-                ManageTenants = (List<ManageTenant>)x.ManageTenants.Select(z => new ManageTenant
-                {
-                    Id = x.Id,
-                    RegisterTenant = z.RegisterTenant,
-                    RessetPassword = z.RessetPassword,
-                    UpdateTenant = z.UpdateTenant,
-                    ViewTenant = z.ViewTenant
-                }).ToList(),
-                Payments = (List<Payments>)x.Payments.Select(r => new Payments
-                {
-                    Id = x.Id,
-                    ChangeStatus = r.ChangeStatus,
-                    ViewPayment = r.ViewPayment,
-                    ManageRoles = r.ManageRoles
-                }).ToList(),
+                        join t in tenant on mr.Id equals t.Id
+                        join d in demoRequest on mr.Id equals d.Id
+                        join m in management on mr.Id equals m.Id
+                        join u in manageUser on m.Id equals u.Id
+                        join re in rolemanage on m.Id equals re.Id
+                        select new
+                        {
 
-                           
+                            mr.RoleName,
+                            mr.Description,
+                            x.ChangeStatus,
+                            x.ViewPayment,
+                            t.RegisterTenant,
+                            t.RessetPassword,
+                            t.UpdateTenant,
+                            t.ViewTenant,
+                            d.ViewRequest,
+                            d.ApproveRequest,
+                            u.Inactive,
+                            u.CreateUser,
+                            u.Reset,
+                            re.UpdateRole,
+                            re.ViewRole
+
 
 
 
