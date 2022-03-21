@@ -10,8 +10,8 @@ namespace RestApiTask.Models
 {
     public class Users
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+         [Key]
+        public int Id { get; set; }
         public string FullName { get; set; }
         [UniqueUserName]
         public string UserName { get; set; }
