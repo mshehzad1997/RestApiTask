@@ -66,9 +66,7 @@ namespace RestApiTask.Controllers
         public async Task<IActionResult> RoleDetails(int id)
         {
             var payment = await _db.Payments.ToListAsync();
-            var tenant = await _db.manageTenants.ToListAsync();
-            var roles = await _db.manageRoles.ToListAsync();
-            var payment = await _db.Payments.ToListAsync();
+            
             var tenant = await _db.manageTenants.ToListAsync();
             var roles = await _db.manageRoles.ToListAsync();
             var manageUser = await _db.manageUsers.ToListAsync();
@@ -77,12 +75,12 @@ namespace RestApiTask.Controllers
             var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
-
-                        join t in tenant on mr.Id equals t.Id
+             join t in tenant on mr.Id equals t.Id
                         join d in demoRequest on mr.Id equals d.Id
                         join m in management on mr.Id equals m.Id
                         join u in manageUser on m.Id equals u.Id
                         join re in rolemanage on m.Id equals re.Id
+                        where mr.Id == id
                         select new
                         {
 
@@ -103,6 +101,7 @@ namespace RestApiTask.Controllers
                             re.ViewRole
 
                         }).ToList();
+
 
 
             if (role == null)
