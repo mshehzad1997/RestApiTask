@@ -69,6 +69,9 @@ namespace RestApiTask.Controllers
             var payment = await _db.Payments.ToListAsync();
             var tenant = await _db.manageTenants.ToListAsync();
             var roles = await _db.manageRoles.ToListAsync();
+            var payment = await _db.Payments.ToListAsync();
+            var tenant = await _db.manageTenants.ToListAsync();
+            var roles = await _db.manageRoles.ToListAsync();
             var manageUser = await _db.manageUsers.ToListAsync();
             var rolemanage = await _db.rolesManages.ToListAsync();
             var management = await _db.userManagements.ToListAsync();
@@ -102,7 +105,10 @@ namespace RestApiTask.Controllers
                     ManageRoles = r.ManageRoles
                 }).ToList(),
 
-            }).ToListAsync();
+                           
+
+
+
             if (role == null)
             {
                 return NotFound();
