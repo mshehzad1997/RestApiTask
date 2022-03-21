@@ -31,13 +31,13 @@ namespace RestApiTask.Controllers
             var management = await _db.userManagements.ToListAsync();
             var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
-                        join x in payment on mr.Id equals x.Id
+                        join x in payment on mr.Id equals x.ManageRoleId
 
-                        join t in tenant on mr.Id equals t.Id
-                        join d in demoRequest on mr.Id equals d.Id
-                        join m in management on mr.Id equals m.Id
-                        join u in manageUser on m.Id equals u.Id
-                        join re in rolemanage on m.Id equals re.Id
+                        join t in tenant on mr.Id equals t.ManageRoleId
+                        join d in demoRequest on mr.Id equals d.ManageRoleId
+                        join m in management on mr.Id equals m.ManageRoleId
+                        join u in manageUser on m.Id equals u.UserManagementsId
+                        join re in rolemanage on m.Id equals re.UserManagementsId
                         select new
                         {
 
@@ -73,12 +73,12 @@ namespace RestApiTask.Controllers
             var management = await _db.userManagements.ToListAsync();
             var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
-                        join x in payment on mr.Id equals x.Id
-                        join t in tenant on mr.Id equals t.Id
-                        join d in demoRequest on mr.Id equals d.Id
-                        join m in management on mr.Id equals m.Id
-                        join u in manageUser on m.Id equals u.Id
-                        join re in rolemanage on m.Id equals re.Id
+                        join x in payment on mr.Id equals x.ManageRoleId
+                        join t in tenant on mr.Id equals t.ManageRoleId
+                        join d in demoRequest on mr.Id equals d.ManageRoleId
+                        join m in management on mr.Id equals m.ManageRoleId
+                        join u in manageUser on m.Id equals u.UserManagementsId
+                        join re in rolemanage on m.Id equals re.UserManagementsId
                         where mr.Id == id
                         select new
                         {
