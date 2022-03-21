@@ -166,7 +166,7 @@ namespace RestApiTask.Controllers
             }
             catch
             {
-                return BadRequest("Cannot delete Role is already in use");
+                return BadRequest();
             }
            
             return Ok();
