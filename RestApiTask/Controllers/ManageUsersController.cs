@@ -76,7 +76,7 @@ namespace RestApiTask.Controllers
                 user.ManageRoleId = model.ManageRoleId;
                 user.Status = model.Status;
                 user.Password = model.Password;
-                _db.users.Add(model);
+                _db.users.Update(user);
                await _db.SaveChangesAsync();
                 
             }
