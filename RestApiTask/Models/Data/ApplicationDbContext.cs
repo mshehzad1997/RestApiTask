@@ -12,6 +12,6 @@ namespace RestApiTask.Models.Data
         {
           
         }
-        public DbSet<Users> users { get; set; }
+        //public DbSet<Users> users { get; set; }
     }
 }
