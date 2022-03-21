@@ -19,6 +19,9 @@ namespace RestApiTask.Models
         public bool Inactive { get; set; }
         [Display(Name = "Reset")]
         public bool Reset { get; set; }
+        public int UserManagementsId { get; set; }
+
+        [ForeignKey("UserManagementsId")]
         public UserManagements UserManagements { get; set; }
        
     }
