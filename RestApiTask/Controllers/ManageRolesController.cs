@@ -151,7 +151,7 @@ namespace RestApiTask.Controllers
        public async Task<IActionResult> DeleteRole(int id)
         {
             var role = _db.manageRoles.SingleOrDefault(x => x.Id == id);
-            var user = _db.users.SingleOrDefault(y => y.ManageRoleId == id);
+            var user = _db.users.FirstOrDefault(y => y.ManageRoleId == id);
             if(user != null)
             {
                 return BadRequest("Role Already in use");
