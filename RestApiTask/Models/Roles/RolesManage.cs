@@ -17,6 +17,9 @@ namespace RestApiTask.Models
         public bool ViewRole { get; set; }
         [Display(Name = "Update Role")]
         public bool UpdateRole { get; set; }
+        public int UserManagementsId { get; set; }
+
+        [ForeignKey("UserManagementsId")]
         public UserManagements UserManagements { get; set; }
     }
 }

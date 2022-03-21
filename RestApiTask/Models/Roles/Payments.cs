@@ -15,7 +15,9 @@ namespace RestApiTask.Models
         public bool ViewPayment { get; set; }
         [Display(Name = "Change Status")]
         public bool ChangeStatus { get; set; }
+        public int ManageRoleId { get; set; }
 
+        [ForeignKey("ManageRoleId")]
         public ManageRoles ManageRoles { get; set; }
     }
 }

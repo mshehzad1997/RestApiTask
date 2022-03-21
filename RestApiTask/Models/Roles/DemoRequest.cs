@@ -16,6 +16,8 @@ namespace RestApiTask.Models
         [Display(Name = "Approve Request")]
         public bool ApproveRequest { get; set; }
         [Display(Name = "Manage Role")]
+        public int ManageRoleId { get; set; }
+        [ForeignKey("ManageRoleId")]
         public ManageRoles ManageRoles { get; set; }
     }
 }
