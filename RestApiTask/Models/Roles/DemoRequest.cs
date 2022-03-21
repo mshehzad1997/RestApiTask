@@ -9,8 +9,8 @@ namespace RestApiTask.Models
 {
     public class DemoRequest
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
         [Display(Name = "View Request")]
         public bool ViewRequest { get; set; }
         [Display(Name = "Approve Request")]

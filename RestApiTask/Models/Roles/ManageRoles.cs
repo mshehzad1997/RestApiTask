@@ -9,8 +9,8 @@ namespace RestApiTask.Models
 {
     public class ManageRoles
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+       [Key]
+        public int Id { get; set; }
         
         [UniqueRoleName]
         [Display(Name = "Role Name")]

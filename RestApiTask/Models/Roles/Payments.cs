@@ -9,8 +9,8 @@ namespace RestApiTask.Models
 {
     public class Payments
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+       [Key]
+        public int Id { get; set; }
         [Display(Name = "View Payment")]
         public bool ViewPayment { get; set; }
         [Display(Name = "Change Status")]

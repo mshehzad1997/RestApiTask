@@ -9,8 +9,8 @@ namespace RestApiTask.Models
 {
     public class ManageUsers
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+       [Key]
+        public int Id { get; set; }
         [Display(Name = "Create User")]
         public bool CreateUser { get; set; }
         [Display(Name = "Update User")]
