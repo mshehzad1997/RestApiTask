@@ -34,13 +34,13 @@ namespace RestApiTask.Controllers
                         join x in payment on mr.Id equals x.Id
 
                         join t in tenant on mr.Id equals t.Id
-                        join d in demoRequest on mr.Id  equals d.Id
+                        join d in demoRequest on mr.Id equals d.Id
                         join m in management on mr.Id equals m.Id
                         join u in manageUser on m.Id equals u.Id
                         join re in rolemanage on m.Id equals re.Id
-                        select new 
+                        select new
                         {
-                           
+
                             mr.RoleName,
                             mr.Description,
                             x.ChangeStatus,
@@ -58,19 +58,46 @@ namespace RestApiTask.Controllers
                             re.ViewRole
 
                         }).ToList();
+
             return Ok(role);
         }
         [HttpGet]
         [Route("RoleDetails")]
-        public async Task<IActionResult> RoleDetails(int id)
+        public async Task<IActionResult> RoleDetails(string id)
         {
-            
-            var detail =await _db.manageRoles.Where(x => x.Id == id).FirstOrDefaultAsync();
-            if(detail == null)
+
+            var role = await _db.manageRoles.Select(x => new ManageRoles
+            {
+                RoleName = x.RoleName,
+                Description = x.Description,
+                DemoRequests = (List<DemoRequest>)x.DemoRequests.Select(y => new DemoRequest
+                {
+                    Id = x.Id,
+                    ApproveRequest = y.ApproveRequest,
+                    ViewRequest = y.ViewRequest
+                }).ToList(),
+                ManageTenants = (List<ManageTenant>)x.ManageTenants.Select(z => new ManageTenant
+                {
+                    Id = x.Id,
+                    RegisterTenant = z.RegisterTenant,
+                    RessetPassword = z.RessetPassword,
+                    UpdateTenant = z.UpdateTenant,
+                    ViewTenant = z.ViewTenant
+                }).ToList(),
+                Payments = (List<Payments>)x.Payments.Select(r => new Payments
+                {
+                    Id = x.Id,
+                    ChangeStatus = r.ChangeStatus,
+                    ViewPayment = r.ViewPayment,
+                    ManageRoles = r.ManageRoles
+                }).ToList(),
+
+            }).ToListAsync();
+            if (role == null)
             {
                 return NotFound();
             }
-            return Ok(detail);
+            return Ok(role);
         }
         [HttpPost]
         [Route("CreateRole")]
