@@ -75,7 +75,7 @@ namespace RestApiTask.Controllers
             var demoRequest = await _db.demoRequests.ToListAsync();
             var role = (from mr in roles
                         join x in payment on mr.Id equals x.Id
-             join t in tenant on mr.Id equals t.Id
+                        join t in tenant on mr.Id equals t.Id
                         join d in demoRequest on mr.Id equals d.Id
                         join m in management on mr.Id equals m.Id
                         join u in manageUser on m.Id equals u.Id
@@ -101,9 +101,6 @@ namespace RestApiTask.Controllers
                             re.ViewRole
 
                         }).ToList();
-
-
-
             if (role == null)
             {
                 return NotFound();
