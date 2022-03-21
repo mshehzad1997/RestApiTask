@@ -9,8 +9,8 @@ namespace RestApiTask.Models
 {
     public class ManageTenant
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
         [Display(Name = "Register Tenant")]
         public bool RegisterTenant { get; set; }
         [Display(Name = "View Tenant")]
