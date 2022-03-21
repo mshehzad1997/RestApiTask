@@ -68,6 +68,9 @@ namespace RestApiTask.Controllers
             var payment = await _db.Payments.ToListAsync();
             var tenant = await _db.manageTenants.ToListAsync();
             var roles = await _db.manageRoles.ToListAsync();
+            var payment = await _db.Payments.ToListAsync();
+            var tenant = await _db.manageTenants.ToListAsync();
+            var roles = await _db.manageRoles.ToListAsync();
             var manageUser = await _db.manageUsers.ToListAsync();
             var rolemanage = await _db.rolesManages.ToListAsync();
             var management = await _db.userManagements.ToListAsync();
@@ -80,7 +83,6 @@ namespace RestApiTask.Controllers
                         join m in management on mr.Id equals m.Id
                         join u in manageUser on m.Id equals u.Id
                         join re in rolemanage on m.Id equals re.Id
-                        where mr.Id == id
                         select new
                         {
 
@@ -101,7 +103,6 @@ namespace RestApiTask.Controllers
                             re.ViewRole
 
                         }).ToList();
-
 
 
             if (role == null)
