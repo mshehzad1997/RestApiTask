@@ -17,11 +17,12 @@ namespace RestApiTask.Models
         public string UserName { get; set; }
        [UniqueEmail]
         public string Email { get; set; }
-        [Display(Name = "ManageRoleId")]
-        [Required]
-        public int ManageRoleId { get; set; }
+        //[Display(Name = "ManageRoleId")]
+        //[Required]
+        //public int ManageRoleId { get; set; }
+        //[JsonIgnore]
+        //[ForeignKey("ManageRoleId")]
         [JsonIgnore]
-        [ForeignKey("ManageRoleId")]
         public ICollection<UserRoles> Roles { get; set; }
         public gender Gender { get; set; }
         public bool Status { get; set; }
