@@ -21,7 +21,7 @@ namespace RestApiTask.Models.Data
         public DbSet<ManageUsers> manageUsers { get; set; }
         public DbSet<RolesManage> rolesManages { get; set; }
         public DbSet<UserManagements> userManagements { get; set; }
-        public DbSet<UserRole> userRoles { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Payments>()
