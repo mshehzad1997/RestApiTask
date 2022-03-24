@@ -20,7 +20,7 @@ namespace RestApiTask.Models
         [Display(Name = "ManageRoleId")]
         [Required]
         public int ManageRoleId { get; set; }
-        
+
         [ForeignKey("ManageRoleId")]
         [JsonIgnore]
         public virtual ManageRoles ManageRoles { get; set; }
