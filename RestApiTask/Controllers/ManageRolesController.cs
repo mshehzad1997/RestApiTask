@@ -159,7 +159,7 @@ namespace RestApiTask.Controllers
             
             if (role == null)
             {
-                NotFound();
+              return  NotFound();
             }
             try
             {
