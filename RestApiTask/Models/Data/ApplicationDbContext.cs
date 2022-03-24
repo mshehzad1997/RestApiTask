@@ -52,12 +52,16 @@ namespace RestApiTask.Models.Data
                 .HasKey(ur => new { ur.RoleId, ur.UserId });
             modelBuilder.Entity<UserRoles>()
                 .HasOne(ur => ur.Users)
-                .WithMany(ur => ur.ManagRoles)
-       
-      //      modelBuilder.Entity<Payments>()
-      //                .HasOne(p => p.ManageRoles)
-      //                .WithMany(b => b.Payments)
-      //              .OnDelete(DeleteBehavior.Cascade);
+                .WithMany(ur => ur.Roles)
+                .HasForeignKey(ur => ur.UserId);
+            modelBuilder.Entity<UserRoles>()
+                .HasOne(ur => ur.Roles)
+                .WithMany(ur => ur.Users)
+                .HasForeignKey(ur => ur.RoleId);
+            //      modelBuilder.Entity<Payments>()
+            //                .HasOne(p => p.ManageRoles)
+            //                .WithMany(b => b.Payments)
+            //              .OnDelete(DeleteBehavior.Cascade);
 
             //        modelBuilder.Entity<ManageTenant>()
             //        .HasOne(p => p.ManageRoles)

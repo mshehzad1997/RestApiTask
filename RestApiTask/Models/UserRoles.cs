@@ -10,6 +10,6 @@ namespace RestApiTask.Models
         public int UserId { get; set; }
         public Users Users { get; set; }
         public int RoleId { get; set; }
-        public ManageRoles ManageRoles { get; set; }
+        public ManageRoles Roles { get; set; }
     }
 }
