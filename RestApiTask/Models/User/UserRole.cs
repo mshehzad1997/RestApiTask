@@ -9,6 +9,7 @@ namespace RestApiTask.Models.User
 {
     public class UserRole
     {
+       
       public int UserId { get; set; }
         [ForeignKey("UserId")]
       

@@ -22,6 +22,7 @@ namespace RestApiTask.Models
         public List<ManageTenant> ManageTenants { get; set; }
         public List<DemoRequest> DemoRequests { get; set; }
         public List<UserManagements> UserManagements { get; set; }
+       
         
        
       

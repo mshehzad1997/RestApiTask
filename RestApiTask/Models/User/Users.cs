@@ -19,12 +19,12 @@ namespace RestApiTask.Models
         public string Email { get; set; }
         [Display(Name = "ManageRoleId")]
         [Required]
-        //public int ManageRoleId { get; set; }
+        public int ManageRoleId { get; set; }
 
-        //[ForeignKey("ManageRoleId")]
-        //[JsonIgnore]
+        [ForeignKey("ManageRoleId")]
+        [JsonIgnore]
         public virtual ICollection<ManageRoles> ManageRoles { get; set; }
-        [Required]
+
         public gender Gender { get; set; }
         public bool Status { get; set; }
         [RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$", ErrorMessage = "Passwords must be at least 8 characters  ")]

@@ -48,8 +48,7 @@ namespace RestApiTask.Models.Data
          .HasOne(p => p.ManageRoles)
          .WithMany(b => b.UserManagements)
          .OnDelete(DeleteBehavior.Cascade);
-
-
+       
       //      modelBuilder.Entity<Payments>()
       //                .HasOne(p => p.ManageRoles)
       //                .WithMany(b => b.Payments)
