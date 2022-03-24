@@ -19,8 +19,9 @@ namespace RestApiTask.Models
         public string Email { get; set; }
         [Display(Name = "ManageRoleId")]
         [Required]
-        
-         //[JsonIgnore]    
+        public int ManageRoleId { get; set; }
+        [JsonIgnore]
+        [ForeignKey("ManageRoleId")]
         public ICollection<UserRoles> Roles { get; set; }
         public gender Gender { get; set; }
         public bool Status { get; set; }
