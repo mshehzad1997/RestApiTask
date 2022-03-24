@@ -73,7 +73,7 @@ namespace RestApiTask.Controllers
                 user.Email = model.Email;
                 user.FullName = model.FullName;
                 user.Gender = model.Gender;
-                user.ManageRoleId = model.ManageRoleId;
+                //user.ManageRoleId = model.ManageRoleId;
                 user.Status = model.Status;
                 user.Password = model.Password;
                 _db.users.Update(user);
@@ -99,7 +99,7 @@ namespace RestApiTask.Controllers
                     user.Email = user.Email;
                     user.FullName = user.FullName;
                     user.Gender = user.Gender;
-                    user.ManageRoleId = user.ManageRoleId;
+                    //user.ManageRoleId = user.ManageRoleId;
                     user.Password = user.Password;
                     user.Status = false;
                     _db.users.Update(user);
