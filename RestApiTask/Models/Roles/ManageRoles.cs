@@ -24,7 +24,7 @@ namespace RestApiTask.Models
         public List<DemoRequest> DemoRequests { get; set; }
         public List<UserManagements> UserManagements { get; set; }
         [JsonIgnore]
-        public Users Users { get; set; } 
+        public ICollection<UserRoles> Users { get; set; } 
         
        
       
